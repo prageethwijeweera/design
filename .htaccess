@@ -1,0 +1,25 @@
+#Prageeth Weijweera - prageethwije199@gmail.com
+Options +FollowSymLinks
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} -s
+RewriteRule ^ - [L]
+
+#RewriteCond %{HTTP_HOST} ^www\.larry\.loc [NC]
+#RewriteRule ^(.*)$ http://larry.loc/$1 [L,R=301]
+
+ErrorDocument 404 /index.php?p=error&code=404
+ErrorDocument 400 /index.php?p=error&code=400
+ErrorDocument 401 /index.php?p=error&code=401
+ErrorDocument 403 /index.php?p=error&code=403
+ErrorDocument 500 /index.php?p=error&code=500
+
+RewriteRule ^manage\/?$ index.php?t=manage [NC,QSA,L]
+RewriteRule ^manage/(.*)\.(xml|html|htm|form)?$ index.php?t=manage&p=$1 [NC,QSA,L]
+
+RewriteRule ^lpanel\/?$ index.php?t=lpanel [NC,QSA,L]
+RewriteRule ^lpanel/(.*)\.(xml|html|htm|form)?$ index.php?t=lpanel&p=$1 [NC,QSA,L]
+
+RewriteRule ^products/([0-9a-z]+)/(.*)\.(xml|html|htm|form)?$ index.php?t=home&p=products&id=$1 [NC,QSA,L]
+
+RewriteRule ^(.*)\.(xml|html|htm|form|php|ar)?$ index.php?t=home&p=$1 [NC,QSA,L]
+RewriteRule (.*)\/?$ index.php?t=home&p=home [NC,QSA,L]
